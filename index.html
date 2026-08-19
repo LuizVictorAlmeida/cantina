@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantinas Carvalho - SENAI Vila Mariana</title>
+    <link rel="icon" type="image/png" href="logoCantina.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --marrom-escuro: #2D1910;
+            --marrom-caramelo: #9E6738;
+            --amarelo-dourado: #F2B705;
+            --fundo-creme: #FAF6EE;
+            --lavanda-suave: #E4DFEB;
+            --branco: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--fundo-creme);
+            color: var(--marrom-escuro);
+        }
+
+        /* Header e Navegação */
+        /* Correção para o cabeçalho e logo */
+        header {
+            background-color: var(--marrom-escuro); /* Cor de fundo do cabeçalho */
+            padding: 1rem 5%; /* Espaçamento interno */
+            display: flex; /* Alinha logo e menu horizontalmente */
+            justify-content: space-between; /* Espaça logo e menu */
+            align-items: center; /* Centraliza verticalmente */
+            color: var(--branco); /* Cor do texto padrão */
+            /* Remova qualquer position: absolute ou fixed que possa estar aqui */
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Espaço entre a logo e o texto */
+        }
+
+        .logo-img {
+            height: 50px; /* TAMANHO DA LOGO: AJUSTE CONFORME NECESSÁRIO (ex: 60px, 70px) */
+            width: auto; /* Mantém a proporção */
+            object-fit: contain; /* Garante que a imagem não seja cortada */
+            border-radius: 50%; /* Mantém o formato redondo da logo original */
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--amarelo-dourado);
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-badge {
+            background-color: var(--amarelo-dourado);
+            color: var(--marrom-escuro);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            position: absolute;
+            top: -8px;
+            right: -12px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, var(--lavanda-suave) 0%, var(--fundo-creme) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--marrom-escuro);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--marrom-caramelo);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--amarelo-dourado);
+            color: var(--marrom-escuro);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #d9a204;
+            transform: translateY(-2px);
+        }
+
+        /* Seção Cardápio Prévia */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 1.5rem;
+            color: var(--marrom-escuro);
+            position: relative;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 4rem;
+        }
+
+        .card {
+            background: var(--branco);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--lavanda-suave);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            height: 160px;
+            background-color: var(--lavanda-suave);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--marrom-caramelo);
+        }
+
+        .card-body {
+            padding: 1.2rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price {
+            color: var(--marrom-caramelo);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--marrom-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        footer p span {
+            color: var(--amarelo-dourado);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
+            <div class="logo-text">
+                Cantina Carvalho
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li>
+                    <a href="#carrinho" class="cart-icon">
+                        Carrinho
+                        <span class="cart-badge">0</span>
+                    </a>
+                </li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Cantinas Carvalho</h1>
+            <p>O sabor que alimenta a sua rotina no SENAI Vila Mariana. Salgados, pratos executivos, bebidas e sobremesas prontas para o seu intervalo.</p>
+            <a href="cardapio.html" class="btn-primary">Ver Cardápio Completo</a>
+        </section>
+
+        <section id="cardapio">
+            <h2 class="section-title">Mais Pedidos do Intervalo</h2>
+            <div class="menu-grid">
+                <div class="card">
+                    <div class="card-img">coxinha.jpg</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Coxinha de Frango</h3>
+                        <div class="card-price">R$ 8,00</div>
+                        <button class="btn-primary" style="width: 100%;">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">[Foto do Prato]</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Prato Feito Executivo</h3>
+                        <div class="card-price">R$ 18,00</div>
+                        <button class="btn-primary" style="width: 100%;">Adicionar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">[Foto do Suco]</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Suco Natural 500ml</h3>
+                        <div class="card-price">R$ 7,50</div>
+                        <button class="btn-primary" style="width: 100%;">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" style="padding: 3rem 5%; background: var(--branco);">
+            <h2 class="section-title">Sobre a Cantina</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                Localizada dentro do **SENAI Vila Mariana**, a Cantina Carvalho é dedicada a oferecer refeições rápidas, saborosas e de alta qualidade para alunos, professores e colaboradores.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Cantinas Carvalho - SENAI Vila Mariana | Desenvolvido para Apresentação</p>
+    </footer>
+
+</body>
+</html>

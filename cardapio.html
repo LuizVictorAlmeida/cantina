@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - Cantinas Carvalho</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --marrom-escuro: #2D1910;
+            --marrom-caramelo: #9E6738;
+            --laranja-menu: #C84B21;
+            --amarelo-dourado: #F2B705;
+            --fundo-creme: #FAF6EE;
+            --lavanda-suave: #E4DFEB;
+            --cinza-linha: #E0D9CD;
+            --branco: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--fundo-creme);
+            color: var(--marrom-escuro);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--marrom-escuro);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-badge {
+            background: var(--amarelo-dourado);
+            color: var(--marrom-escuro);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px dashed var(--marrom-caramelo);
+        }
+
+        .logo-text {
+            color: var(--branco);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--amarelo-dourado);
+            display: block;
+            font-size: 0.75rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--amarelo-dourado);
+        }
+
+        /* Conteúdo do Cardápio */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .menu-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--marrom-escuro);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-category {
+            background-color: var(--branco);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--marrom-caramelo);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .category-header {
+            background-color: var(--laranja-menu);
+            color: var(--branco);
+            padding: 0.8rem 1rem;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .item-list {
+            padding: 1rem;
+            list-style: none;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed var(--cinza-linha);
+            gap: 10px;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--marrom-escuro);
+            flex: 1;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--laranja-menu);
+            background: var(--fundo-creme);
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .add-btn {
+            background-color: var(--amarelo-dourado);
+            color: var(--marrom-escuro);
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: var(--marrom-caramelo);
+            color: var(--branco);
+            transform: scale(1.1);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--marrom-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-badge">CC</div>
+            <div class="logo-text">
+                Cantinas Carvalho
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Main.html">Home</a></li>
+                <li><a href="cardapio.html" class="active">Cardápio</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="menu-title">Cardápio</h1>
+
+        <div class="menu-grid">
+
+            <!-- LANCHES -->
+            <div class="menu-category">
+                <div class="category-header">Lanches</div>
+                <ul class="item-list">
+                    <li class="item"><span class="item-name">Bauru</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Misto Quente</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Queijo Quente</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pão com Manteiga</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pão com Mortadela</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pão com Presunto</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Americano</span><span class="item-price">R$ 15,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">X-Salada</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">X-Burguer</span><span class="item-price">R$ 9,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">X-Bacon</span><span class="item-price">R$ 14,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">X Frango</span><span class="item-price">R$ 16,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">X Churrasco</span><span class="item-price">R$ 18,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Lanche Natural</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                </ul>
+            </div>
+
+            <!-- SALGADOS -->
+            <div class="menu-category">
+                <div class="category-header">Salgados</div>
+                <ul class="item-list">
+                    <li class="item"><span class="item-name">Pão de Batata</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Enroladinho de Salsicha (150 gr)</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pão de Queijo</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Croissant (150 gr)</span><span class="item-price">R$ 7,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Hamburgão (150 gr)</span><span class="item-price">R$ 7,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Empada (150 gr)</span><span class="item-price">R$ 7,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Esfihas (150 gr)</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Coxinha (150 gr)</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Bolinho de Carne (150 gr)</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Torta Salgada (150 gr)</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Folhados (150 gr)</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Quibe (150 gr)</span><span class="item-price">R$ 7,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pastel (150 gr)</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Fatia Pizza (150 gr)</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Fatia Empadão (150 gr)</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Fogazza Frita (150 gr)</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                </ul>
+            </div>
+
+            <!-- BEBIDAS GELADAS -->
+            <div class="menu-category">
+                <div class="category-header">Bebidas Geladas</div>
+                <ul class="item-list">
+                    <li class="item"><span class="item-name">Água com Gás (500 ml)</span><span class="item-price">R$ 3,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Água sem Gás (500 ml)</span><span class="item-price">R$ 3,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Suco de Laranja Natural (300 ml)</span><span class="item-price">R$ 8,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Sucos de Polpas de Frutas (300 ml)</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Vitaminas com Leite (300 ml)</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Refrigerante Lata (350 ml)</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Refrigerante Lata 220</span><span class="item-price">R$ 5,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Refrigerante Garrafa (600 ml)</span><span class="item-price">R$ 7,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Água de Coco (200 ml)</span><span class="item-price">R$ 3,80</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Bebidas de Soja (200 ml)</span><span class="item-price">R$ 3,70</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Repositor Energético (500 ml)</span><span class="item-price">R$ 10,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Água com Sabor (500 ml)</span><span class="item-price">R$ 6,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">H2O (500 ml)</span><span class="item-price">R$ 9,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Achocolatado Caixinha (200 ml)</span><span class="item-price">R$ 3,99</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Todinho (200 ml)</span><span class="item-price">R$ 5,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Suco Caixinha (200 ml)</span><span class="item-price">R$ 3,50</span><button class="add-btn">+</button></li>
+                </ul>
+            </div>
+
+            <!-- BEBIDAS QUENTES -->
+            <div class="menu-category">
+                <div class="category-header">Bebidas Quentes</div>
+                <ul class="item-list">
+                    <li class="item"><span class="item-name">Café (180 ml)</span><span class="item-price">R$ 3,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Leite (180 ml)</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pingado (180 ml)</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Chocolate Quente (180 ml)</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Café com Leite (180 ml)</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                </ul>
+            </div>
+
+            <!-- DOCES -->
+            <div class="menu-category">
+                <div class="category-header">Doces</div>
+                <ul class="item-list">
+                    <li class="item"><span class="item-name">Barra Cereal (25gr)</span><span class="item-price">R$ 3,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Doces Industrializados (20gr)</span><span class="item-price">R$ 2,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Pé de Moça</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Bombom</span><span class="item-price">R$ 2,20</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Sonho de Valsa / Ouro Branco</span><span class="item-price">R$ 3,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Chiclete Pacote com 6</span><span class="item-price">R$ 2,99</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Trident</span><span class="item-price">R$ 4,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Chiclete Caixinha</span><span class="item-price">R$ 1,99</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Bala</span><span class="item-price">R$ 0,20</span><button class="add-btn">+</button></li>
+                </ul>
+            </div>
+
+            <!-- REFEIÇÕES -->
+            <div class="menu-category">
+                <div class="category-header">Refeições</div>
+                <ul class="item-list">
+                    <li class="item"><span class="item-name">Prato Feito (a partir)</span><span class="item-price">R$ 18,00</span><button class="add-btn">+</button></li>
+                    <li class="item"><span class="item-name">Kilograma</span><span class="item-price">R$ 49,90</span><button class="add-btn">+</button></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Cantinas Carvalho - SENAI Vila Mariana</p>
+    </footer>
+
+</body>
+</html>
