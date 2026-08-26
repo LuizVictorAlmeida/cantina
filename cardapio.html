@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio - Cantinas Carvalho</title>
+    <link rel="icon" type="image/png" href="logoCantina.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
+         :root {
             --marrom-escuro: #2D1910;
             --marrom-caramelo: #9E6738;
             --laranja-menu: #C84B21;
@@ -16,14 +18,14 @@
             --cinza-linha: #E0D9CD;
             --branco: #FFFFFF;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-
+        
         body {
             background-color: var(--fundo-creme);
             color: var(--marrom-escuro);
@@ -31,8 +33,8 @@
             flex-direction: column;
             min-height: 100vh;
         }
-
         /* Header */
+        
         header {
             background-color: var(--marrom-escuro);
             padding: 1rem 5%;
@@ -42,67 +44,60 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
-
+        
         .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
-        .logo-badge {
-            background: var(--amarelo-dourado);
-            color: var(--marrom-escuro);
-            width: 45px;
-            height: 45px;
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border: 2px dashed var(--marrom-caramelo);
         }
-
+        
         .logo-text {
             color: var(--branco);
             font-size: 1.2rem;
             font-weight: 700;
-            text-transform: uppercase;
         }
-
+        
         .logo-text span {
             color: var(--amarelo-dourado);
             display: block;
             font-size: 0.75rem;
         }
-
+        
         nav ul {
             display: flex;
             list-style: none;
             gap: 1.8rem;
         }
-
+        
         nav a {
             color: var(--branco);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
         }
-
-        nav a:hover, nav a.active {
+        
+        nav a:hover,
+        nav a.active {
             color: var(--amarelo-dourado);
         }
-
         /* Conteúdo do Cardápio */
+        
         .container {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1.5rem;
             width: 100%;
         }
-
+        
         .menu-title {
             text-align: center;
             font-size: 2rem;
@@ -111,21 +106,21 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
+        
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
         }
-
+        
         .menu-category {
             background-color: var(--branco);
             border-radius: 10px;
             overflow: hidden;
             border: 2px solid var(--marrom-caramelo);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-
+        
         .category-header {
             background-color: var(--laranja-menu);
             color: var(--branco);
@@ -136,12 +131,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
+        
         .item-list {
             padding: 1rem;
             list-style: none;
         }
-
+        
         .item {
             display: flex;
             align-items: center;
@@ -150,18 +145,18 @@
             border-bottom: 1px dashed var(--cinza-linha);
             gap: 10px;
         }
-
+        
         .item:last-child {
             border-bottom: none;
         }
-
+        
         .item-name {
             font-weight: 600;
             font-size: 0.95rem;
             color: var(--marrom-escuro);
             flex: 1;
         }
-
+        
         .item-price {
             font-weight: 700;
             color: var(--laranja-menu);
@@ -170,7 +165,7 @@
             border-radius: 4px;
             white-space: nowrap;
         }
-
+        
         .add-btn {
             background-color: var(--amarelo-dourado);
             color: var(--marrom-escuro);
@@ -186,14 +181,14 @@
             justify-content: center;
             transition: transform 0.2s, background-color 0.2s;
         }
-
+        
         .add-btn:hover {
             background-color: var(--marrom-caramelo);
             color: var(--branco);
             transform: scale(1.1);
         }
-
         /* Rodapé */
+        
         footer {
             background-color: var(--marrom-escuro);
             color: var(--branco);
@@ -203,18 +198,19 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
         <div class="logo-container">
-            <div class="logo-badge">CC</div>
+            <img src="logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
             <div class="logo-text">
                 Cantinas Carvalho
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="Main.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="cardapio.html" class="active">Cardápio</a></li>
                 <li><a href="carrinho.html">Carrinho</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
@@ -336,6 +332,7 @@
     <footer>
         <p>&copy; Cantinas Carvalho - SENAI Vila Mariana</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
+
 </html>

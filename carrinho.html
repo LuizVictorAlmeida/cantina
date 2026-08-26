@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Cantinas Carvalho</title>
+    <link rel="icon" type="image/png" href="logoCantina.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --marrom-escuro: #2D1910;
+            --marrom-caramelo: #9E6738;
+            --laranja-menu: #C84B21;
+            --amarelo-dourado: #F2B705;
+            --fundo-creme: #FAF6EE;
+            --lavanda-suave: #E4DFEB;
+            --cinza-linha: #E0D9CD;
+            --branco: #FFFFFF;
+            --vermelho-remover: #D93838;
+            --verde-sucesso: #2E7D32;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--fundo-creme);
+            color: var(--marrom-escuro);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* Header e Navegação */
+        
+        header {
+            background-color: var(--marrom-escuro);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            color: var(--branco);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+        
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--amarelo-dourado);
+        }
+        /* Container Principal do Carrinho */
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--marrom-escuro);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 900px) {
+            .cart-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+        /* Lista de Produtos */
+        
+        .cart-section {
+            background-color: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--cinza-linha);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+            border-bottom: 2px solid var(--lavanda-suave);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: var(--fundo-creme);
+            border-radius: 8px;
+            border: 1px solid var(--cinza-linha);
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .item-details {
+            flex: 2;
+            min-width: 150px;
+        }
+        
+        .item-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--marrom-escuro);
+        }
+        
+        .item-unit-price {
+            font-size: 0.85rem;
+            color: var(--marrom-caramelo);
+            font-weight: 600;
+        }
+        
+        .item-qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--branco);
+            padding: 4px 8px;
+            border-radius: 20px;
+            border: 1px solid var(--cinza-linha);
+        }
+        
+        .qty-btn {
+            background: var(--fundo-creme);
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-weight: bold;
+            color: var(--marrom-escuro);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .qty-btn:hover {
+            background: var(--amarelo-dourado);
+        }
+        
+        .qty-value {
+            font-weight: 700;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .item-total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--laranja-menu);
+            min-width: 80px;
+            text-align: right;
+        }
+        
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: var(--vermelho-remover);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .remove-btn:hover {
+            background-color: #fde8e8;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--cinza-linha);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--marrom-caramelo);
+            border: 2px solid var(--marrom-caramelo);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--marrom-caramelo);
+            color: var(--branco);
+        }
+        /* Card do Resumo do Pedido */
+        
+        .summary-card {
+            background-color: var(--branco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid var(--marrom-caramelo);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed var(--cinza-linha);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--marrom-escuro);
+        }
+        
+        .form-group {
+            margin-top: 1.2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--marrom-escuro);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--cinza-linha);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            background: var(--fundo-creme);
+        }
+        
+        .form-control:focus {
+            border-color: var(--marrom-caramelo);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 70px;
+        }
+        
+        .btn-checkout {
+            width: 100%;
+            background-color: var(--amarelo-dourado);
+            color: var(--marrom-escuro);
+            border: none;
+            padding: 0.9rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .btn-checkout:hover {
+            background-color: #d9a204;
+            transform: translateY(-2px);
+        }
+        /* Rodapé */
+        
+        footer {
+            background-color: var(--marrom-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
+            <div class="logo-text">
+                Cantinas Carvalho
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="carrinho.html" class="active">Carrinho</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Seu Carrinho</h1>
+
+        <div class="cart-grid">
+
+            <!-- Coluna de Produtos -->
+            <div class="cart-section">
+                <div class="section-header">
+                    <span>Itens Selecionados</span>
+                    <span style="font-size: 0.9rem; font-weight: normal; color: var(--marrom-caramelo);">3 itens</span>
+                </div>
+
+                <div class="item-list">
+
+                    <!-- Item Demo 1 -->
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <div class="item-title">X-Salada</div>
+                            <div class="item-unit-price">R$ 10,00 un.</div>
+                        </div>
+                        <div class="item-qty-controls">
+                            <button class="qty-btn">-</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <div class="item-total">R$ 10,00</div>
+                        <button class="remove-btn" title="Remover item">&times;</button>
+                    </div>
+
+                    <!-- Item Demo 2 -->
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <div class="item-title">Suco de Laranja Natural (300 ml)</div>
+                            <div class="item-unit-price">R$ 8,00 un.</div>
+                        </div>
+                        <div class="item-qty-controls">
+                            <button class="qty-btn">-</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <div class="item-total">R$ 8,00</div>
+                        <button class="remove-btn" title="Remover item">&times;</button>
+                    </div>
+
+                    <!-- Item Demo 3 -->
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <div class="item-title">Pão de Queijo</div>
+                            <div class="item-unit-price">R$ 4,00 un.</div>
+                        </div>
+                        <div class="item-qty-controls">
+                            <button class="qty-btn">-</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <div class="item-total">R$ 4,00</div>
+                        <button class="remove-btn" title="Remover item">&times;</button>
+                    </div>
+
+                </div>
+
+                <div class="cart-actions">
+                    <a href="cardapio.html" class="btn-secondary">&larr; Adicionar Mais Itens</a>
+                </div>
+            </div>
+
+            <!-- Coluna de Resumo do Pedido -->
+            <div class="summary-card">
+                <div class="section-header">
+                    <span>Resumo do Pedido</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>R$ 22,00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Taxa de Atendimento</span>
+                    <span style="color: var(--verde-sucesso); font-weight: 600;">Grátis</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo-retirada">Local de Retirada / Consumo</label>
+                    <select id="tipo-retirada" class="form-control">
+                        <option value="balcao">Retirada no Balcão (Intervalo)</option>
+                        <option value="mesa">Consumo na Cantina</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="forma-pagamento">Forma de Pagamento</label>
+                    <select id="forma-pagamento" class="form-control">
+                        <option value="pix">PIX (Chave / QR Code)</option>
+                        <option value="cartao">Cartão de Débito/Crédito</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacao">Observações (opcional)</label>
+                    <textarea id="observacao" class="form-control" placeholder="Ex: Lanche sem maionese, suco sem açúcar..."></textarea>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span style="color: var(--laranja-menu);">R$ 22,00</span>
+                </div>
+
+                <button class="btn-checkout">Finalizar Pedido</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Cantinas Carvalho - SENAI Vila Mariana</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
