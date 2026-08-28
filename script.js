@@ -59,7 +59,13 @@ function initCardapio() {
 
 // --- LÓGICA DO CARRINHO: RENDERIZAR E ATUALIZAR ---
 function renderCart() {
-    const cartContainer = document.querySelector('.item-list');
+    // Antes o seletor era só '.item-list', mas essa classe também é usada
+    // dentro de cada categoria do cardápio (Lanches, Salgados, etc). Por isso,
+    // quando essa função rodava na página do cardápio, ela apagava o conteúdo
+    // da primeira categoria e colocava os itens do carrinho no lugar.
+    // Agora o seletor busca o '.item-list' só dentro da '.cart-section',
+    // que só existe na página carrinho.html.
+    const cartContainer = document.querySelector('.cart-section .item-list');
     const subtotalEl = document.querySelector('.summary-row span:last-child');
     const totalEl = document.querySelector('.summary-total span:last-child');
     const cartCountHeader = document.querySelector('.section-header span:last-child');
@@ -156,3 +162,20 @@ function initCheckout() {
     });
 }
 console.log("Botões encontrados:", document.querySelectorAll('.add-btn').length);
+
+// --- INICIALIZAÇÃO GERAL ---
+// Este bloco roda assim que o HTML da página termina de carregar.
+// Ele "liga" todas as funcionalidades acima, chamando cada função na página certa.
+document.addEventListener('DOMContentLoaded', () => {
+    // A seção ".hero" só existe na página inicial (index.html). Então, sempre
+    // que a pessoa "entra no site" pela home, o carrinho é zerado - ou seja,
+    // ela nunca vai ver itens de uma visita/teste anterior.
+    if (document.querySelector('.hero')) {
+        localStorage.removeItem('cantina_carrinho');
+    }
+
+    updateCartBadge(); // Atualiza o número do carrinho no menu (em todas as páginas)
+    initCardapio();    // Ativa os botões "Adicionar" (index.html e cardapio.html)
+    renderCart();       // Desenha os itens reais do carrinho (carrinho.html)
+    initCheckout();     // Ativa o botão "Finalizar Pedido" (carrinho.html)
+});

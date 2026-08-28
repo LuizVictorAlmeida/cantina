@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Cantinas Carvalho</title>
+    <link rel="icon" type="image/png" href="logoCantina.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --marrom-escuro: #2D1910;
+            --marrom-caramelo: #9E6738;
+            --laranja-menu: #C84B21;
+            --amarelo-dourado: #F2B705;
+            --fundo-creme: #FAF6EE;
+            --lavanda-suave: #E4DFEB;
+            --cinza-linha: #E0D9CD;
+            --branco: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--fundo-creme);
+            color: var(--marrom-escuro);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* Header */
+        
+        header {
+            background-color: var(--marrom-escuro);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            color: var(--branco);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+        
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--amarelo-dourado);
+        }
+        /* Conteúdo Sobre */
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--marrom-escuro);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sobre-card {
+            background-color: var(--branco);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--cinza-linha);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .sobre-card p {
+            margin-bottom: 1rem;
+        }
+        
+        .sobre-card p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .info-card {
+            background-color: var(--branco);
+            border-radius: 10px;
+            padding: 1.2rem;
+            border: 2px solid var(--marrom-caramelo);
+            text-align: center;
+        }
+        
+        .info-card h3 {
+            color: var(--laranja-menu);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-card p {
+            color: var(--marrom-caramelo);
+            font-weight: 600;
+        }
+        /* Rodapé */
+        
+        footer {
+            background-color: var(--marrom-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
+            <div class="logo-text">
+                Cantinas Carvalho
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="sobre.html" class="active">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Sobre a Gente</h1>
+
+        <div class="sobre-card">
+            <p>Localizada dentro do <strong>SENAI Vila Mariana</strong>, a Cantina Carvalho é dedicada a oferecer refeições rápidas, saborosas e de alta qualidade para alunos, professores e colaboradores.</p>
+            <p>Do lanche rápido entre uma aula e outra ao prato executivo na hora do almoço, preparamos tudo com carinho para deixar o seu intervalo mais gostoso.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Horário</h3>
+                <p>Segunda a Sexta<br>07h às 18h</p>
+            </div>
+            <div class="info-card">
+                <h3>Localização</h3>
+                <p>SENAI Vila Mariana<br>São Paulo - SP</p>
+            </div>
+            <div class="info-card">
+                <h3>Pagamento</h3>
+                <p>PIX e Cartão</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Cantinas Carvalho - SENAI Vila Mariana</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

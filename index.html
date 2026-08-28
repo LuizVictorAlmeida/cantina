@@ -185,6 +185,12 @@
             color: var(--marrom-caramelo);
         }
         
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .card-body {
             padding: 1.2rem;
         }
@@ -220,7 +226,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
+            <img src="img/logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
             <div class="logo-text">
                 Cantinas Carvalho
             </div>
@@ -251,7 +257,7 @@
             <h2 class="section-title">Mais Pedidos do Intervalo</h2>
             <div class="menu-grid">
                 <div class="card item">
-                    <div class="card-img">[Foto do Salgado]</div>
+                    <div class="card-img"><img src="img/coxinha.jpg" alt="Coxinha de Frango"></div>
                     <div class="card-body">
                         <h3 class="card-title item-name">Coxinha de Frango</h3>
                         <div class="card-price item-price">R$ 8,00</div>
@@ -259,7 +265,7 @@
                     </div>
                 </div>
                 <div class="card item">
-                    <div class="card-img">[Foto do Prato]</div>
+                    <div class="card-img"><img src="img/prato-executivo.jpg" alt="Prato Feito Executivo"></div>
                     <div class="card-body">
                         <h3 class="card-title item-name">Prato Feito Executivo</h3>
                         <div class="card-price item-price">R$ 18,00</div>
@@ -267,7 +273,7 @@
                     </div>
                 </div>
                 <div class="card item">
-                    <div class="card-img">[Foto do Suco]</div>
+                    <div class="card-img"><img src="img/suco-laranja.jfif" alt="Suco Natural 500ml"></div>
                     <div class="card-body">
                         <h3 class="card-title item-name">Suco Natural 500ml</h3>
                         <div class="card-price item-price">R$ 7,50</div>
