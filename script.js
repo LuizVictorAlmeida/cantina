@@ -18,6 +18,28 @@ function updateCartBadge() {
     }
 }
 
+// --- MENU MOBILE (HAMBURGUER) ---
+function initMenuMobile() {
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+    if (!toggleBtn || !nav) return;
+
+    toggleBtn.addEventListener('click', () => {
+        const aberto = nav.classList.toggle('nav-aberto');
+        toggleBtn.classList.toggle('aberto', aberto);
+        toggleBtn.setAttribute('aria-expanded', aberto);
+    });
+
+    // Fecha o menu automaticamente ao tocar em um link (evita ficar aberto na próxima página)
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('nav-aberto');
+            toggleBtn.classList.remove('aberto');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
+
 // --- LÓGICA DO CARDÁPIO: ADICIONAR ITEM ---
 function initCardapio() {
     const addButtons = document.querySelectorAll('.add-btn');
@@ -174,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('cantina_carrinho');
     }
 
+    initMenuMobile();  // Ativa o botão hamburguer (em todas as páginas)
     updateCartBadge(); // Atualiza o número do carrinho no menu (em todas as páginas)
     initCardapio();    // Ativa os botões "Adicionar" (index.html e cardapio.html)
     renderCart();       // Desenha os itens reais do carrinho (carrinho.html)

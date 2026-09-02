@@ -34,6 +34,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         /* Header e Navegação */
         
@@ -84,6 +85,75 @@
         nav a:hover,
         nav a.active {
             color: var(--amarelo-dourado);
+        }
+        /* Menu Mobile (Hamburguer) */
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1100;
+        }
+        
+        .menu-toggle span {
+            width: 24px;
+            height: 3px;
+            background-color: var(--branco);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu-toggle.aberto span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .menu-toggle.aberto span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.aberto span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: min(75vw, 300px);
+                height: 100vh;
+                background-color: var(--marrom-escuro);
+                padding: 6rem 2rem 2rem;
+                box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
+                z-index: 1050;
+            }
+            nav.nav-aberto {
+                right: 0;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 1.8rem;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .item-total {
+                text-align: left;
+            }
         }
         /* Container Principal do Carrinho */
         
@@ -354,6 +424,9 @@
                 Cantinas Carvalho
             </div>
         </div>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>

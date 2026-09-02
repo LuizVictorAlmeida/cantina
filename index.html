@@ -27,6 +27,7 @@
         body {
             background-color: var(--fundo-creme);
             color: var(--marrom-escuro);
+            overflow-x: hidden;
         }
         /* Header e Navegação */
         /* Correção para o cabeçalho e logo */
@@ -108,6 +109,81 @@
             position: absolute;
             top: -8px;
             right: -12px;
+        }
+        /* Menu Mobile (Hamburguer) */
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1100;
+        }
+        
+        .menu-toggle span {
+            width: 24px;
+            height: 3px;
+            background-color: var(--branco);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .menu-toggle.aberto span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .menu-toggle.aberto span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.aberto span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: min(75vw, 300px);
+                height: 100vh;
+                background-color: var(--marrom-escuro);
+                padding: 6rem 2rem 2rem;
+                box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+                transition: right 0.3s ease;
+                z-index: 1050;
+            }
+            nav.nav-aberto {
+                right: 0;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 1.8rem;
+            }
+            .hero {
+                padding: 2.5rem 1.25rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
         }
         /* Hero Section */
         
@@ -226,11 +302,14 @@
 
     <header>
         <div class="logo-container">
-            <img src="img/logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
+            <img src="logoCantina.png" alt="Logo Cantinas Carvalho" class="logo-img">
             <div class="logo-text">
                 Cantinas Carvalho
             </div>
         </div>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
@@ -257,7 +336,7 @@
             <h2 class="section-title">Mais Pedidos do Intervalo</h2>
             <div class="menu-grid">
                 <div class="card item">
-                    <div class="card-img"><img src="img/coxinha.jpg" alt="Coxinha de Frango"></div>
+                    <div class="card-img"><img src="coxinha.jpg" alt="Coxinha de Frango"></div>
                     <div class="card-body">
                         <h3 class="card-title item-name">Coxinha de Frango</h3>
                         <div class="card-price item-price">R$ 8,00</div>
@@ -265,7 +344,7 @@
                     </div>
                 </div>
                 <div class="card item">
-                    <div class="card-img"><img src="img/prato-executivo.jpg" alt="Prato Feito Executivo"></div>
+                    <div class="card-img"><img src="prato-executivo.jpg" alt="Prato Feito Executivo"></div>
                     <div class="card-body">
                         <h3 class="card-title item-name">Prato Feito Executivo</h3>
                         <div class="card-price item-price">R$ 18,00</div>
@@ -273,7 +352,7 @@
                     </div>
                 </div>
                 <div class="card item">
-                    <div class="card-img"><img src="img/suco-laranja.jfif" alt="Suco Natural 500ml"></div>
+                    <div class="card-img"><img src="suco-laranja.jfif" alt="Suco Natural 500ml"></div>
                     <div class="card-body">
                         <h3 class="card-title item-name">Suco Natural 500ml</h3>
                         <div class="card-price item-price">R$ 7,50</div>
@@ -286,7 +365,7 @@
         <section id="sobre" style="padding: 3rem 5%; background: var(--branco);">
             <h2 class="section-title">Sobre a Cantina</h2>
             <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Localizada dentro do **SENAI Vila Mariana**, a Cantina Carvalho é dedicada a oferecer refeições rápidas, saborosas e de alta qualidade para alunos, professores e colaboradores.
+                Localizada dentro do <strong>SENAI Vila Mariana</strong>, a Cantina Carvalho é dedicada a oferecer refeições rápidas, saborosas e de alta qualidade para alunos, professores e colaboradores.
             </p>
         </section>
     </main>
