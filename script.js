@@ -165,22 +165,94 @@ function initCheckout() {
     checkoutBtn.addEventListener('click', () => {
         const cart = getCart();
         if (cart.length === 0) {
-            alert('Adicione itens ao carrinho antes de finalizar!');
+            const aviso = document.getElementById('avisoCarrinhoVazio');
+            if (aviso) {
+                aviso.classList.add('mostrar');
+                setTimeout(() => aviso.classList.remove('mostrar'), 3000);
+            }
             return;
         }
 
         const retiradaEl = document.getElementById('tipo-retirada');
         const pagamentoEl = document.getElementById('forma-pagamento');
+        const observacaoEl = document.getElementById('observacao');
 
-        const retirada = retiradaEl ? retiradaEl.value : 'Não informado';
-        const pagamento = pagamentoEl ? pagamentoEl.value : 'Não informado';
+        // Usa o texto visível da opção selecionada (não o value técnico)
+        const retirada = retiradaEl ? retiradaEl.options[retiradaEl.selectedIndex].text : 'Não informado';
+        const pagamento = pagamentoEl ? pagamentoEl.options[pagamentoEl.selectedIndex].text : 'Não informado';
+        const observacao = observacaoEl ? observacaoEl.value.trim() : '';
 
-        alert(`Pedido realizado com sucesso!\n\nRetirada: ${retirada}\nPagamento: ${pagamento}\n\nAguarde o preparo na Cantina Carvalho.`);
+        const total = cart.reduce((soma, item) => soma + (item.price * item.qtd), 0);
+
+        mostrarModalPedido(cart, retirada, pagamento, observacao, total);
 
         // Limpa o carrinho
         localStorage.removeItem('cantina_carrinho');
         saveCart([]);
         renderCart();
+    });
+}
+
+// --- MODAL DE CONFIRMAÇÃO DO PEDIDO ---
+function mostrarModalPedido(cart, retirada, pagamento, observacao, total) {
+    const modal = document.getElementById('modalPedido');
+    if (!modal) return;
+
+    // Número de pedido fictício, só para dar um toque mais real à confirmação
+    const numeroPedido = '#' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('modalNumeroPedido').textContent = numeroPedido;
+
+    const resumoEl = document.getElementById('modalResumoItens');
+    resumoEl.innerHTML = cart.map(item => `
+        <div class="modal-resumo-item">
+            <span>${item.qtd}x ${item.name}</span>
+            <span>R$ ${(item.price * item.qtd).toFixed(2).replace('.', ',')}</span>
+        </div>
+    `).join('');
+
+    document.getElementById('modalRetirada').textContent = retirada;
+    document.getElementById('modalPagamento').textContent = pagamento;
+    document.getElementById('modalTotalPedido').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+    const obsEl = document.getElementById('modalObservacao');
+    if (observacao) {
+        obsEl.textContent = `Obs: ${observacao}`;
+        obsEl.style.display = 'block';
+    } else {
+        obsEl.style.display = 'none';
+    }
+
+    modal.classList.add('ativo');
+}
+
+function fecharModalPedido() {
+    const modal = document.getElementById('modalPedido');
+    if (modal) modal.classList.remove('ativo');
+}
+
+function initModalPedido() {
+    const modal = document.getElementById('modalPedido');
+    if (!modal) return;
+
+    const fecharBtn = document.getElementById('fecharModal');
+    const novoPedidoBtn = document.getElementById('btnNovoPedido');
+
+    if (fecharBtn) fecharBtn.addEventListener('click', fecharModalPedido);
+
+    if (novoPedidoBtn) {
+        novoPedidoBtn.addEventListener('click', () => {
+            window.location.href = 'cardapio.html';
+        });
+    }
+
+    // Fecha ao clicar na área escura ao redor do card
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) fecharModalPedido();
+    });
+
+    // Fecha com a tecla Esc
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') fecharModalPedido();
     });
 }
 console.log("Botões encontrados:", document.querySelectorAll('.add-btn').length);
@@ -201,4 +273,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardapio();    // Ativa os botões "Adicionar" (index.html e cardapio.html)
     renderCart();       // Desenha os itens reais do carrinho (carrinho.html)
     initCheckout();     // Ativa o botão "Finalizar Pedido" (carrinho.html)
+    initModalPedido();  // Ativa a modal de confirmação do pedido (carrinho.html)
 });
