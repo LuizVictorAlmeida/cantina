@@ -8,14 +8,16 @@ function saveCart(cart) {
     updateCartBadge();
 }
 
-// --- ATUALIZA A INSÍGNIA (CONTADOR DO MENU) ---
+// --- ATUALIZA A INSÍGNIA (CONTADOR DO MENU E DO BOTÃO FLUTUANTE) ---
 function updateCartBadge() {
-    const badge = document.querySelector('.cart-badge');
-    if (badge) {
-        const cart = getCart();
-        const totalCount = cart.reduce((sum, item) => sum + item.qtd, 0);
+    const badges = document.querySelectorAll('.cart-badge');
+    if (badges.length === 0) return;
+
+    const cart = getCart();
+    const totalCount = cart.reduce((sum, item) => sum + item.qtd, 0);
+    badges.forEach(badge => {
         badge.textContent = totalCount;
-    }
+    });
 }
 
 // --- MENU MOBILE (HAMBURGUER) ---

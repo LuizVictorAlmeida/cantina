@@ -160,6 +160,62 @@
                 height: 34px;
             }
         }
+        /* Botão Flutuante — Ir para o Carrinho */
+        
+        .fab-carrinho {
+            position: fixed;
+            bottom: 1.6rem;
+            right: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            background-color: var(--amarelo-dourado);
+            color: var(--marrom-escuro);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.85rem 1.35rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 16px rgba(45, 25, 16, 0.28);
+            z-index: 900;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .fab-carrinho:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 20px rgba(45, 25, 16, 0.32);
+        }
+        
+        .fab-carrinho svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        
+        .fab-badge {
+            background-color: var(--laranja-menu);
+            color: var(--branco);
+            border-radius: 50%;
+            min-width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            padding: 0 4px;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 480px) {
+            .fab-carrinho {
+                bottom: 1.1rem;
+                right: 1.1rem;
+                padding: 0.75rem 1rem;
+            }
+            .fab-carrinho .fab-label {
+                display: none;
+            }
+        }
         /* Conteúdo do Cardápio */
         
         .container {
@@ -406,6 +462,17 @@
     <footer>
         <p>&copy; Cantinas Carvalho - SENAI Vila Mariana</p>
     </footer>
+
+    <a href="carrinho.html" class="fab-carrinho" aria-label="Ir para o carrinho">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="fab-label">Carrinho</span>
+        <span class="cart-badge fab-badge">0</span>
+    </a>
+
     <script src="script.js"></script>
 </body>
 
