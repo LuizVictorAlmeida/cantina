@@ -50,7 +50,7 @@ PÁGINAS DO SITE
 --------------------------------------------------
 FUNCIONALIDADES
 --------------------------------------------------
-- Cardápio organizado por categoria, com foto, nome e
+- Cardápio organizado por categoria, nome e
   preço de cada item
 - Carrinho de compras: adicionar, ajustar quantidade e
   remover itens, com total calculado automaticamente
